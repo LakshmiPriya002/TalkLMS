@@ -106,6 +106,49 @@ export default function KeyBenefits() {
           ))}
         </div>
       </div>
+
+      {/* Responsive CSS */}
+      <style>
+        {`
+          @media (max-width: 1024px) {
+            h3 {
+              font-size: 2.5rem !important;
+            }
+            p {
+              font-size: 1.3rem !important;
+            }
+            div[style*="padding: 3rem"] {
+              padding: 2rem !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+            h3 {
+              font-size: 2rem !important;
+              text-align: center;
+            }
+            p {
+              font-size: 1.1rem !important;
+              text-align: center;
+            }
+            div[style*="padding: 3rem"] {
+              padding: 1.5rem !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h3 {
+              font-size: 1.6rem !important;
+            }
+            p {
+              font-size: 1rem !important;
+            }
+            div[style*="padding: 3rem"] {
+              padding: 1rem !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }

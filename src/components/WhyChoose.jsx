@@ -21,10 +21,10 @@ export default function WhyChooseUs() {
   ];
 
   return (
-    <section id="why-choose-us" style={{ padding: "2rem 1.5rem", backgroundColor: "#ffffff" }}>
+    <section id="why-choose-us" style={{ padding: "4rem 1.5rem", backgroundColor: "#ffffff" }}>
       
-      {/* Section Heading - Left Aligned, shifted right */}
-      <div style={{ maxWidth: "700px", margin: "0 auto", marginLeft: "500px", textAlign: "center", marginBottom: "3rem" }}>
+      {/* Section Heading */}
+      <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center", marginBottom: "3rem" }}>
         <h3 style={{ fontSize: "2.8rem", fontWeight: "bold", marginBottom: "1rem" }}>
           Why Choose TalkLMS?
         </h3>
@@ -33,19 +33,19 @@ export default function WhyChooseUs() {
         </p>
       </div>
 
-      {/* Cards Grid - Centered */}
+      {/* Cards Grid */}
       <div style={{
         display: "flex",
         flexWrap: "wrap",
-        gap: "3rem",
-        justifyContent: "center", // cards centered
+        gap: "2rem",
+        justifyContent: "center",
       }}>
         {reasons.map((r, i) => (
           <div
             key={i}
             style={{
               backgroundColor: "#ffffff",
-              padding: "2.5rem",
+              padding: "2rem",
               borderRadius: "1rem",
               boxShadow: "0 6px 20px rgba(0,0,0,0.1)",
               flex: "1 1 250px",
@@ -76,6 +76,41 @@ export default function WhyChooseUs() {
           </div>
         ))}
       </div>
+
+      {/* Responsive CSS */}
+      <style>
+        {`
+          @media (max-width: 1024px) {
+            h3 {
+              font-size: 2.4rem !important;
+            }
+            p {
+              font-size: 1.2rem !important;
+            }
+          }
+
+          @media (max-width: 768px) {
+            section {
+              padding: 3rem 1rem;
+            }
+            h3 {
+              font-size: 2rem !important;
+            }
+            p {
+              font-size: 1.1rem !important;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h3 {
+              font-size: 1.6rem !important;
+            }
+            p {
+              font-size: 1rem !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }

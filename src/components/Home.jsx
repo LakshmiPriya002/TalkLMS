@@ -73,20 +73,21 @@ export default function Home() {
           intuitive courses, mobile access, and reporting that shows what's
           working across your organization.
         </p>
-        <Link to="/demo-request">
-          <button style={buttonStyle}>Request Demo</button>
-        </Link>
-        <Link to="/signup">
-          <button
-            style={{
-              ...buttonStyle,
-              marginLeft: "1rem",
-              backgroundColor: "#2563eb",
-            }}
-          >
-            Get a Free Trial
-          </button>
-        </Link>
+        <div style={{ marginTop: "1.5rem", display: "flex", flexWrap: "wrap", gap: "1rem" }}>
+          <Link to="/demo-request">
+            <button style={buttonStyle}>Request Demo</button>
+          </Link>
+          <Link to="/signup">
+            <button
+              style={{
+                ...buttonStyle,
+                backgroundColor: "#2563eb",
+              }}
+            >
+              Get a Free Trial
+            </button>
+          </Link>
+        </div>
       </div>
 
       {/* Image Section */}
@@ -111,6 +112,49 @@ export default function Home() {
           }}
         />
       </div>
+
+      {/* Responsive CSS */}
+      <style>
+        {`
+          @media (max-width: 1024px) {
+            section {
+              padding: 4rem 2rem 2rem;
+            }
+          }
+
+          @media (max-width: 768px) {
+            section {
+              flex-direction: column;
+              text-align: center;
+              padding: 3rem 1.5rem 2rem;
+            }
+            section > div:nth-child(2) {
+              padding-right: 0;
+            }
+            section > div:nth-child(3) {
+              margin-top: 2rem;
+            }
+            h1 {
+              font-size: 2rem !important;
+            }
+            p {
+              font-size: 1rem !important;
+            }
+            button {
+              width: 100%;
+            }
+          }
+
+          @media (max-width: 480px) {
+            h1 {
+              font-size: 1.6rem !important;
+            }
+            p {
+              font-size: 0.95rem !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
