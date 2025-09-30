@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Footer from "./Footer";
 
-export default function UseCases() {
+export default function Benefits() {
   const navigate = useNavigate();
 
   const useCases = [
@@ -37,7 +37,9 @@ export default function UseCases() {
   ];
 
   const handleNavigate = (item) => {
-    navigate(item.route, { state: { heroText: item.heroText, heroSubText: item.heroSubText } });
+    navigate(item.route, {
+      state: { heroText: item.heroText, heroSubText: item.heroSubText },
+    });
   };
 
   return (
@@ -53,7 +55,6 @@ export default function UseCases() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            boxSizing: "border-box",
             textAlign: "center",
           }}
         >
@@ -69,26 +70,22 @@ export default function UseCases() {
         <section
           style={{
             width: "100vw",
-            padding: "3rem 2rem",
+            padding: "4rem 2rem",
             backgroundColor: "#fff",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            boxSizing: "border-box",
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "2rem" }}>
+          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "3rem" }}>
             Use Cases
           </h2>
+
           <div
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "2rem",
-              width: "100%",
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+              gap: "3rem",
+              maxWidth: "1200px",
+              margin: "0 auto",
             }}
           >
             {useCases.map((item, index) => (
@@ -96,25 +93,33 @@ export default function UseCases() {
                 key={index}
                 onClick={() => handleNavigate(item)}
                 style={{
-                  flex: "1 1 300px",
-                  backgroundColor: "#f0f4f8",
-                  padding: "2rem",
-                  borderRadius: "0.5rem",
+                  backgroundColor: "#f9fafb",
+                  padding: "2.5rem 2rem",
+                  borderRadius: "1rem",
                   textAlign: "center",
+                  cursor: "pointer",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  cursor: "pointer",
-                  transition: "transform 0.2s",
+                  justifyContent: "center",
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.12)",
+                  transition: "all 0.3s ease",
+                  minHeight: "280px",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.03)")}
-                onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-10px)";
+                  e.currentTarget.style.boxShadow = "0 15px 25px rgba(0,0,0,0.18)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.12)";
+                }}
               >
-                <span style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>{item.icon}</span>
-                <h3 style={{ fontSize: "1.5rem", fontWeight: "bold", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "3rem", marginBottom: "1rem" }}>{item.icon}</span>
+                <h3 style={{ fontSize: "1.6rem", fontWeight: "bold", marginBottom: "0.75rem", color: "#1e40af" }}>
                   {item.title}
                 </h3>
-                <p style={{ fontSize: "1.1rem", margin: 0 }}>{item.desc}</p>
+                <p style={{ fontSize: "1.15rem", color: "#374151", lineHeight: "1.6" }}>{item.desc}</p>
               </div>
             ))}
           </div>

@@ -62,7 +62,7 @@ export default function Navbar() {
           alignItems: "center",
           justifyContent: "flex-start",
           flexGrow: 1,
-          marginLeft: "68rem",
+          marginLeft: "65rem",
         }}
       >
         <Link to="/" style={navLinkStyle}>
@@ -81,8 +81,8 @@ export default function Navbar() {
         <Link to="/contact" style={navLinkStyle}>
           Contact
         </Link>
-        <Link to="/use-cases" style={navLinkStyle}>
-          Use Cases
+        <Link to="/benefits" style={navLinkStyle}>
+          Benefits
         </Link>
       </div>
     </nav>

@@ -1,20 +1,20 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import React Router
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./components/Home"; // Home component (hero section)
+import Home from "./components/Home";
 import Footer from "./components/Footer";
 import AboutUs from "./components/About";
-import KeyFeatures from "./components/KeyFeatures"; // Import KeyBenefits
-import WhyChooseUs from "./components/WhyChoose"; // Import WhyChooseUs
-import Contact from "./components/Contact"; // Import Contact component
+import KeyFeatures from "./components/KeyFeatures";
+import WhyChooseUs from "./components/WhyChoose";
+import Contact from "./components/Contact";
 import Signup from "./components/Signup";
 import DemoRequest from "./components/DemoRequest";
 import KeyBenefits from "./components/KeyBenefits";
 import AdditionalBenefits from "./components/AdditionalFeatures";
-import UseCases from "./components/UseCases";
+import UseCases from "./components/UseCases"; // Correct import (remove angle brackets)
 import Universities from "./components/Universities";
 import Colleges from "./components/Colleges";
-import Institutions from "./components/Institutions"; 
+import Institutions from "./components/Institutions";
 
 function App() {
   return (
@@ -29,23 +29,25 @@ function App() {
               <>
                 <Home />
                 <KeyBenefits />
-                <AdditionalBenefits/>
+                <AdditionalBenefits />
                 <KeyFeatures />
                 <WhyChooseUs />
                 <Footer />
               </>
             }
           />
+
           {/* About page route */}
           <Route path="/about" element={<AboutUs />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/demo-request" element={<DemoRequest />} />
-          <Route path="/use-cases" element={<UseCases />} />
+
+          {/* Benefits / Use Cases routes */}
+          <Route path="/benefits" element={<UseCases />} />
           <Route path="/universities" element={<Universities />} />
           <Route path="/colleges" element={<Colleges />} />
           <Route path="/institutions" element={<Institutions />} />
-          
         </Routes>
       </div>
     </Router>
