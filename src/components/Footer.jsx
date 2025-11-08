@@ -5,74 +5,74 @@ import { Link } from "react-router-dom";
 export default function Footer() {
   const footerStyle = {
     width: "100%",
-    backgroundColor: "#9e979757",
-    color: "#333",
-    padding: "2rem 1rem",
-    boxSizing: "border-box",
+    backgroundColor: "#3498db", // same as navbar button color
+    color: "#ffffff", // white text
+    padding: "2.5rem 1rem",
     textAlign: "center",
+    boxSizing: "border-box",
   };
 
   const linkStyle = {
-    color: "#333",
+    color: "#ffffff",
     textDecoration: "none",
     fontWeight: "500",
-    fontSize: "1rem",
     margin: "0 1rem",
-    display: "inline-block",
-    marginBottom: "0.5rem",
+    fontSize: "1rem",
+    transition: "color 0.3s ease",
+  };
+
+  const linkHover = (e, isHovering) => {
+    e.currentTarget.style.color = isHovering ? "#e0e7ff" : "#ffffff";
   };
 
   const copyrightStyle = {
-    fontSize: "0.875rem",
-    marginTop: "0.5rem",
+    fontSize: "0.9rem",
+    marginTop: "1.5rem",
+    opacity: 0.9,
   };
 
   return (
     <footer style={footerStyle}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-        {/* Links */}
-        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
+        {/* Footer Links */}
+        <div style={{ marginBottom: "1rem" }}>
           {["About Us", "Contact", "Privacy Policy"].map((link, idx) => (
             <Link
               key={idx}
-              to={link === "About Us" ? "/about" : link === "Contact" ? "/contact" : "#"}
+              to={
+                link === "Home"
+                  ? "/"
+                  : link === "About Us"
+                  ? "/about"
+                  : link === "Contact"
+                  ? "/contact"
+                  : "#"
+              }
               style={linkStyle}
+              onMouseEnter={(e) => linkHover(e, true)}
+              onMouseLeave={(e) => linkHover(e, false)}
             >
               {link}
             </Link>
           ))}
         </div>
+
         {/* Copyright */}
         <p style={copyrightStyle}>
-          &copy; {new Date().getFullYear()} TalkLMS. All rights reserved.
+          &copy; {new Date().getFullYear()}{" "}
+          <span style={{ fontWeight: "600" }}>TalkLMS</span>. All rights reserved.
         </p>
       </div>
 
-      {/* Responsive CSS */}
       <style>
         {`
           @media (max-width: 768px) {
             footer {
-              padding: 1.5rem 1rem;
+              padding: 1.8rem 1rem;
             }
             a {
-              font-size: 0.95rem !important;
-            }
-            p {
-              font-size: 0.8rem !important;
-            }
-          }
-
-          @media (max-width: 480px) {
-            footer {
-              padding: 1rem 0.5rem;
-            }
-            a {
-              font-size: 0.9rem !important;
-              margin: 0 0.5rem !important;
-            }
-            p {
-              font-size: 0.75rem !important;
+              display: block;
+              margin: 0.4rem 0;
             }
           }
         `}

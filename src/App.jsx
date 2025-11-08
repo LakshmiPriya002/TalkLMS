@@ -15,6 +15,7 @@ import UseCases from "./components/UseCases"; // Correct import (remove angle br
 import Universities from "./components/Universities";
 import Colleges from "./components/Colleges";
 import Institutions from "./components/Institutions";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -42,6 +43,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/demo-request" element={<DemoRequest />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          {/* <Route path="/features" element={<Features />} /> */}
 
           {/* Benefits / Use Cases routes */}
           <Route path="/benefits" element={<UseCases />} />

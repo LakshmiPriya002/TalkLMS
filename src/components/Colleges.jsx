@@ -25,14 +25,22 @@ export default function Colleges() {
   return (
     <>
       <Navbar />
-      <div style={{ fontFamily: "Arial, sans-serif", color: "#333", width: "100vw", margin: 0, padding: 0 }}>
-        
+      <div
+        style={{
+          fontFamily: "Arial, sans-serif",
+          color: "#333",
+          width: "100vw",
+          margin: 0,
+          padding: 0,
+        }}
+      >
         {/* Hero Section */}
         <section
           style={{
             width: "100vw",
             padding: "4rem 2rem",
-            backgroundImage: "url('https://via.placeholder.com/1200x400?text=Classroom+Image')",
+            backgroundImage:
+              "url('https://via.placeholder.com/1200x400?text=Classroom+Image')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
@@ -44,16 +52,33 @@ export default function Colleges() {
             minHeight: "400px",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#1e40af" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              marginBottom: "1rem",
+              color: "#007bff",
+            }}
+          >
             TalkLMS for Colleges
           </h2>
-          <p style={{ fontSize: "1.25rem", maxWidth: "800px", lineHeight: "1.8", marginBottom: "1.5rem", color: "#666" }}>
-            Enhance college learning with TalkLMS, a flexible and user-friendly platform tailored to meet the unique needs of college education. Our tools support a variety of teaching styles and learning objectives.
+          <p
+            style={{
+              fontSize: "1.25rem",
+              maxWidth: "800px",
+              lineHeight: "1.8",
+              marginBottom: "1.5rem",
+              color: "#666",
+            }}
+          >
+            Enhance college learning with TalkLMS, a flexible and user-friendly
+            platform tailored to meet the unique needs of college education. Our
+            tools support a variety of teaching styles and learning objectives.
           </p>
           <button
             style={{
               padding: "0.75rem 2rem",
-              backgroundColor: "#1e40af",
+              backgroundColor: "#007bff",
               color: "#fff",
               border: "none",
               borderRadius: "0.5rem",
@@ -77,7 +102,14 @@ export default function Colleges() {
             boxSizing: "border-box",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "1.5rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff",
+              marginBottom: "1.5rem",
+            }}
+          >
             Key Benefits for Colleges
           </h2>
           <div
@@ -104,8 +136,18 @@ export default function Colleges() {
                   alignItems: "center",
                 }}
               >
-                <span style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{item.icon}</span>
-                <h3 style={{ fontSize: "1.3rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{item.title}</h3>
+                <span style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
+                  {item.icon}
+                </span>
+                <h3
+                  style={{
+                    fontSize: "1.3rem",
+                    fontWeight: "bold",
+                    marginBottom: "0.5rem",
+                  }}
+                >
+                  {item.title}
+                </h3>
                 <p style={{ fontSize: "1rem", margin: 0 }}>{item.desc}</p>
               </div>
             ))}
@@ -126,11 +168,28 @@ export default function Colleges() {
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "1rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff",
+              marginBottom: "1rem",
+            }}
+          >
             Get Started with TalkLMS
           </h2>
-          <p style={{ fontSize: "1.25rem", maxWidth: "800px", lineHeight: "1.8", marginBottom: "1.5rem", color: "#666" }}>
-            Colleges can implement TalkLMS to modernize their learning management, improve student engagement, and track academic performance effectively.
+          <p
+            style={{
+              fontSize: "1.25rem",
+              maxWidth: "800px",
+              lineHeight: "1.8",
+              marginBottom: "1.5rem",
+              color: "#666",
+            }}
+          >
+            Colleges can implement TalkLMS to modernize their learning
+            management, improve student engagement, and track academic
+            performance effectively.
           </p>
         </section>
       </div>

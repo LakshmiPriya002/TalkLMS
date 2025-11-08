@@ -32,23 +32,20 @@ export default function Universities() {
           width: "100vw",
           margin: 0,
           padding: 0,
+          overflowX: "hidden",
         }}
       >
-        {/* Hero Section */}
         {/* Hero Section */}
         <section
           style={{
             width: "100vw",
-            padding: "4rem 2rem",
-            backgroundImage:
-              "url('https://via.placeholder.com/1200x400?text=University+Campus')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            padding: "5rem 2rem",
+            background: "linear-gradient(to right, #e0f2fe, #fef3c7)", // same as contact form
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center", // vertical centering
-            alignItems: "center", // horizontal centering
-            textAlign: "center", // center text inside
+            justifyContent: "center",
+            alignItems: "center",
+            textAlign: "center",
             borderRadius: "10px",
             boxSizing: "border-box",
             minHeight: "400px",
@@ -59,7 +56,7 @@ export default function Universities() {
               fontSize: "3rem",
               fontWeight: "bold",
               marginBottom: "1rem",
-              color: "#1e40af",
+              color: "#007bff",
             }}
           >
             TalkLMS for Universities
@@ -70,7 +67,7 @@ export default function Universities() {
               maxWidth: "800px",
               lineHeight: "1.8",
               marginBottom: "1.5rem",
-              color: "#666",
+              color: "#374151",
             }}
           >
             Enhance university learning experience with a comprehensive suite of
@@ -80,14 +77,22 @@ export default function Universities() {
           </p>
           <button
             style={{
-              padding: "0.75rem 2rem",
-              backgroundColor: "#1e40af",
+              padding: "0.9rem 2rem",
+              backgroundColor: "#007bff",
               color: "#fff",
               border: "none",
-              borderRadius: "0.5rem",
+              borderRadius: "0.6rem",
               cursor: "pointer",
               fontSize: "1.1rem",
+              fontWeight: "600",
+              transition: "background-color 0.3s ease",
             }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#0056b3")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#007bff")
+            }
           >
             Learn More
           </button>
@@ -97,8 +102,8 @@ export default function Universities() {
         <section
           style={{
             width: "100vw",
-            padding: "3rem 2rem",
-            backgroundColor: "#f9f9f9",
+            padding: "4rem 2rem",
+            backgroundColor: "#fff",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -109,8 +114,8 @@ export default function Universities() {
             style={{
               fontSize: "3rem",
               fontWeight: "bold",
-              color: "#1e40af",
-              marginBottom: "1.5rem",
+              color: "#007bff",
+              marginBottom: "2rem",
             }}
           >
             Key Benefits for Universities
@@ -122,6 +127,7 @@ export default function Universities() {
               justifyContent: "center",
               gap: "2rem",
               width: "100%",
+              maxWidth: "1200px",
             }}
           >
             {benefits.map((item, index) => (
@@ -129,29 +135,43 @@ export default function Universities() {
                 key={index}
                 style={{
                   flex: "1 1 300px",
-                  backgroundColor: "#fff",
-                  padding: "1.5rem",
-                  borderRadius: "0.5rem",
+                  background: "linear-gradient(to bottom right, #f0f9ff, #fefce8)",
+                  padding: "2rem 1.5rem",
+                  borderRadius: "1rem",
                   textAlign: "center",
-                  boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+                  boxShadow: "0 8px 18px rgba(0,0,0,0.1)",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.boxShadow =
+                    "0 12px 25px rgba(0,0,0,0.15)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow =
+                    "0 8px 18px rgba(0,0,0,0.1)";
                 }}
               >
-                <span style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
+                <span style={{ fontSize: "2.5rem", marginBottom: "0.75rem" }}>
                   {item.icon}
                 </span>
                 <h3
                   style={{
-                    fontSize: "1.3rem",
+                    fontSize: "1.4rem",
                     fontWeight: "bold",
-                    marginBottom: "0.5rem",
+                    marginBottom: "0.75rem",
+                    color: "#007bff",
                   }}
                 >
                   {item.title}
                 </h3>
-                <p style={{ fontSize: "1rem", margin: 0 }}>{item.desc}</p>
+                <p style={{ fontSize: "1rem", color: "#374151", margin: 0 }}>
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -161,8 +181,8 @@ export default function Universities() {
         <section
           style={{
             width: "100vw",
-            padding: "3rem 2rem",
-            backgroundColor: "#e6f0fa",
+            padding: "4rem 2rem",
+            background: "linear-gradient(to right, #e0f2fe, #fef3c7)",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -175,7 +195,7 @@ export default function Universities() {
             style={{
               fontSize: "3rem",
               fontWeight: "bold",
-              color: "#1e40af",
+              color: "#007bff",
               marginBottom: "1rem",
             }}
           >
@@ -187,13 +207,34 @@ export default function Universities() {
               maxWidth: "800px",
               lineHeight: "1.8",
               marginBottom: "1.5rem",
-              color: "#666",
+              color: "#374151",
             }}
           >
             Universities can implement TalkLMS to modernize their learning
             management, improve student engagement, and track academic
             performance effectively.
           </p>
+          <button
+            style={{
+              padding: "1rem 2.5rem",
+              backgroundColor: "#007bff",
+              color: "#fff",
+              border: "none",
+              borderRadius: "0.6rem",
+              cursor: "pointer",
+              fontSize: "1.1rem",
+              fontWeight: "600",
+              transition: "background-color 0.3s ease",
+            }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#0056b3")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#007bff")
+            }
+          >
+            Contact Us
+          </button>
         </section>
       </div>
       <Footer />

@@ -1,32 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 
-// Import local images
+// Import team images
 import johnImg from "../assets/John Smith.jpeg";
 import emilyImg from "../assets/Emily Brown.jpg";
 import michaelImg from "../assets/Michael Davis.jpeg";
 
 export default function Contact() {
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const supportTeam = [
-    {
-      name: "John Smith",
-      role: "Support Lead",
-      img: johnImg,
-    },
-    {
-      name: "Emily Brown",
-      role: "Customer Support",
-      img: emilyImg,
-    },
-    {
-      name: "Michael Davis",
-      role: "Technical Support",
-      img: michaelImg,
-    },
+    { name: "John Smith", role: "Support Lead", img: johnImg },
+    { name: "Emily Brown", role: "Customer Support", img: emilyImg },
+    { name: "Michael Davis", role: "Technical Support", img: michaelImg },
   ];
 
   const [formData, setFormData] = useState({
@@ -35,60 +23,88 @@ export default function Contact() {
     subject: "",
     message: "",
   });
-
   const [errors, setErrors] = useState({});
+  const [submissionStatus, setSubmissionStatus] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
 
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Email is invalid";
-    }
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Invalid email address";
     if (!formData.subject.trim()) newErrors.subject = "Subject is required";
     if (!formData.message.trim()) newErrors.message = "Message is required";
-
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      alert("Form submitted successfully!");
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setErrors({});
+    if (!validate()) return;
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("http://localhost:8000/contact/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+      if (response.ok) {
+        setSubmissionStatus("Form submitted successfully!");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setErrors({});
+      } else {
+        const errorData = await response.json();
+        setSubmissionStatus(`Error: ${errorData.error || "Submission failed"}`);
+      }
+    } catch (error) {
+      setSubmissionStatus(`Error: ${error.message}`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (submissionStatus) {
+      const timer = setTimeout(() => setSubmissionStatus(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [submissionStatus]);
 
   return (
     <>
       <Navbar />
-      <div style={{ fontFamily: "Arial, sans-serif", color: "#333" }}>
-        {/* Contact Us Section */}
+      <div
+        style={{
+          fontFamily: "'Poppins', sans-serif",
+          color: "#1e293b",
+          width: "100vw",
+          margin: 0,
+          padding: 0,
+          boxSizing: "border-box",
+        }}
+      >
+        {/* Contact Header Section */}
         <section
           style={{
             width: "100vw",
-            padding: "5rem 2rem 3rem",
-            backgroundColor: "#e6f0fa",
+            padding: "4rem 2rem 3rem",
+            backgroundColor: "#e0f2fe",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            boxSizing: "border-box",
             textAlign: "center",
           }}
         >
           <h2
             style={{
               fontSize: "3rem",
-              fontWeight: "bold",
-              color: "#1e40af",
+              fontWeight: "700",
+              color: "#2563eb",
               marginBottom: "1rem",
             }}
           >
@@ -97,31 +113,38 @@ export default function Contact() {
           <p
             style={{
               fontSize: "1.25rem",
-              maxWidth: "800px",
               lineHeight: "1.8",
-              marginBottom: "2rem",
+              maxWidth: "900px",
+              margin: "0 auto",
+              color: "#475569",
             }}
           >
-            We’re here to help you with any questions or support needs. Reach
-            out to us today!
+            Have a question or need support? Our team is here to help you with
+            any inquiries about TalkLMS.
           </p>
           <button
-            onClick={() => navigate("/signup")} // Navigate to signup route
+            onClick={() => navigate("/signup")}
             style={{
-              padding: "0.75rem 2rem",
-              backgroundColor: "#1e40af",
+              marginTop: "2rem",
+              padding: "0.8rem 2.5rem",
+              backgroundColor: "#2563eb",
               color: "#fff",
               border: "none",
-              borderRadius: "0.5rem",
+              borderRadius: "0.75rem",
               cursor: "pointer",
-              fontSize: "1.1rem",
+              fontWeight: "600",
+              fontSize: "1.15rem",
+              boxShadow: "0 5px 15px rgba(37, 99, 235, 0.4)",
+              transition: "background-color 0.3s ease",
             }}
+            onMouseEnter={(e) => (e.target.style.backgroundColor = "#1d4ed8")}
+            onMouseLeave={(e) => (e.target.style.backgroundColor = "#2563eb")}
           >
             Get in Touch
           </button>
         </section>
 
-        {/* Our Support Team Section */}
+        {/* Support Team Section */}
         <section
           style={{
             width: "100vw",
@@ -131,65 +154,80 @@ export default function Contact() {
             flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
-            boxSizing: "border-box",
             textAlign: "center",
           }}
         >
           <h2
             style={{
               fontSize: "3rem",
-              fontWeight: "bold",
-              color: "#1e40af",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Our Support Team
-          </h2>
-          <p
-            style={{
-              fontSize: "1.25rem",
-              maxWidth: "800px",
-              lineHeight: "1.8",
+              fontWeight: "700",
+              color: "#2563eb",
               marginBottom: "2rem",
             }}
           >
-            Meet the dedicated team ready to assist you with your TalkLMS
-            experience.
-          </p>
+            Meet Our Support Team
+          </h2>
           <div
             style={{
-              display: "flex",
-              flexWrap: "wrap",
-              justifyContent: "center",
-              gap: "2rem",
+              display: "grid",
+              gridTemplateColumns: "repeat(3, 1fr)",
+              gap: "2.5rem",
+              maxWidth: "1200px",
               width: "100%",
+              margin: "0 auto",
             }}
           >
             {supportTeam.map((member, index) => (
               <div
                 key={index}
-                style={{ flex: "1 1 200px", textAlign: "center" }}
+                style={{
+                  backgroundColor: "#f3f4f6",
+                  padding: "2rem",
+                  borderRadius: "1rem",
+                  boxShadow: "0 4px 15px rgba(0, 0, 0, 0.07)",
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  textAlign: "center",
+                  minHeight: "320px",
+                  transition: "transform 0.3s ease",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "translateY(-6px)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "translateY(0)")
+                }
               >
                 <img
                   src={member.img}
                   alt={member.name}
                   style={{
-                    borderRadius: "50%",
+                    borderRadius: "100%",
                     width: "140px",
                     height: "140px",
                     objectFit: "cover",
+                    marginBottom: "1rem",
                   }}
                 />
                 <p
                   style={{
-                    fontSize: "1rem",
-                    margin: "0.5rem 0",
-                    fontWeight: "bold",
+                    fontSize: "1.1rem",
+                    fontWeight: "600",
+                    color: "#1e293b",
+                    margin: "0.25rem 0",
                   }}
                 >
                   {member.name}
                 </p>
-                <p style={{ fontSize: "1rem", color: "#1e40af" }}>
+                <p
+                  style={{
+                    fontSize: "0.95rem",
+                    color: "#2563eb",
+                    margin: 0,
+                    fontWeight: "500",
+                  }}
+                >
                   {member.role}
                 </p>
               </div>
@@ -201,21 +239,19 @@ export default function Contact() {
         <section
           style={{
             width: "100vw",
-            padding: "3rem 2rem",
-            backgroundColor: "#f9f9f9",
+            padding: "4rem 2rem",
+            backgroundColor: "#f0f9ff",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
             alignItems: "center",
-            boxSizing: "border-box",
             textAlign: "center",
           }}
         >
           <h2
             style={{
               fontSize: "3rem",
-              fontWeight: "bold",
-              color: "#1e40af",
+              fontWeight: "700",
+              color: "#2563eb",
               marginBottom: "1rem",
             }}
           >
@@ -224,28 +260,29 @@ export default function Contact() {
           <p
             style={{
               fontSize: "1.25rem",
+              color: "#475569",
+              marginBottom: "2rem",
               maxWidth: "800px",
               lineHeight: "1.8",
-              marginBottom: "2rem",
             }}
           >
-            Get in touch with us via email, phone, or visit our office.
+            Reach us through email, phone, or by visiting our office.
           </p>
           <div
             style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "1rem",
+              display: "grid",
+              gap: "1.2rem",
               maxWidth: "600px",
+              width: "100%",
             }}
           >
-            <p style={{ fontSize: "1.1rem", margin: 0 }}>
+            <p style={{ fontSize: "1.1rem" }}>
               <strong>Email:</strong> support@talklms.com
             </p>
-            <p style={{ fontSize: "1.1rem", margin: 0 }}>
+            <p style={{ fontSize: "1.1rem" }}>
               <strong>Phone:</strong> +1-800-555-0123
             </p>
-            <p style={{ fontSize: "1.1rem", margin: 0 }}>
+            <p style={{ fontSize: "1.1rem" }}>
               <strong>Address:</strong> 123 Learning Lane, EduCity, EC 12345
             </p>
           </div>
@@ -255,11 +292,11 @@ export default function Contact() {
         <section
           style={{
             width: "100vw",
-            padding: "3rem 2rem",
-            backgroundColor: "#fff",
+            padding: "6rem 2rem",
+            background: "linear-gradient(to right, #e0f2fe, #fef3c7)",
             display: "flex",
             justifyContent: "center",
-            boxSizing: "border-box",
+            alignItems: "center",
           }}
         >
           <form
@@ -269,28 +306,56 @@ export default function Contact() {
               flexDirection: "column",
               gap: "1rem",
               width: "100%",
-              maxWidth: "400px",
-              backgroundColor: "#f9f9f9",
-              padding: "2rem",
-              borderRadius: "0.5rem",
-              boxShadow: "0 4px 6px rgba(0,0,0,0.1)",
+              maxWidth: "500px", // reduced from 700px
+              backgroundColor: "#fff",
+              padding: "2.5rem", // reduced from 3rem
+              borderRadius: "1rem",
+              boxShadow: "0 10px 25px rgba(0, 0, 0, 0.1)",
               textAlign: "center",
             }}
           >
-            {/* Name */}
+            <h2
+              style={{
+                fontSize: "2rem",
+                fontWeight: "700",
+                color: "#2563eb",
+                marginBottom: "1rem",
+              }}
+            >
+              Send Us a Message
+            </h2>
+
+            {submissionStatus && (
+              <div
+                style={{
+                  backgroundColor: submissionStatus.includes("Error")
+                    ? "#fee2e2"
+                    : "#d1fae5",
+                  color: submissionStatus.includes("Error")
+                    ? "#b91c1c"
+                    : "#065f46",
+                  padding: "1rem",
+                  borderRadius: "0.5rem",
+                  fontWeight: "500",
+                }}
+              >
+                {submissionStatus}
+              </div>
+            )}
+
             <input
               type="text"
               name="name"
+              placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
-              placeholder="Your Name"
               style={{
-                padding: "0.85rem",
-                borderRadius: "0.35rem",
-                border: errors.name ? "1px solid red" : "1px solid #ccc",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+                border: errors.name ? "1px solid red" : "1px solid #cbd5e1",
                 fontSize: "1rem",
-                width: "100%",
               }}
+              disabled={isSubmitting}
             />
             {errors.name && (
               <span style={{ color: "red", fontSize: "0.85rem" }}>
@@ -298,20 +363,19 @@ export default function Contact() {
               </span>
             )}
 
-            {/* Email */}
             <input
               type="email"
               name="email"
+              placeholder="Your Email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="Your Email"
               style={{
-                padding: "0.85rem",
-                borderRadius: "0.35rem",
-                border: errors.email ? "1px solid red" : "1px solid #ccc",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+                border: errors.email ? "1px solid red" : "1px solid #cbd5e1",
                 fontSize: "1rem",
-                width: "100%",
               }}
+              disabled={isSubmitting}
             />
             {errors.email && (
               <span style={{ color: "red", fontSize: "0.85rem" }}>
@@ -319,20 +383,19 @@ export default function Contact() {
               </span>
             )}
 
-            {/* Subject */}
             <input
               type="text"
               name="subject"
+              placeholder="Subject"
               value={formData.subject}
               onChange={handleChange}
-              placeholder="Subject"
               style={{
-                padding: "0.85rem",
-                borderRadius: "0.35rem",
-                border: errors.subject ? "1px solid red" : "1px solid #ccc",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+                border: errors.subject ? "1px solid red" : "1px solid #cbd5e1",
                 fontSize: "1rem",
-                width: "100%",
               }}
+              disabled={isSubmitting}
             />
             {errors.subject && (
               <span style={{ color: "red", fontSize: "0.85rem" }}>
@@ -340,44 +403,52 @@ export default function Contact() {
               </span>
             )}
 
-            {/* Message */}
             <textarea
               name="message"
+              placeholder="Your Message"
               value={formData.message}
               onChange={handleChange}
-              rows={5}
-              placeholder="Your Message"
+              rows={6}
               style={{
-                padding: "0.85rem",
-                borderRadius: "0.35rem",
-                border: errors.message ? "1px solid red" : "1px solid #ccc",
+                padding: "1rem",
+                borderRadius: "0.5rem",
+                border: errors.message ? "1px solid red" : "1px solid #cbd5e1",
                 fontSize: "1rem",
-                width: "100%",
                 resize: "vertical",
               }}
-            ></textarea>
+              disabled={isSubmitting}
+            />
             {errors.message && (
               <span style={{ color: "red", fontSize: "0.85rem" }}>
                 {errors.message}
               </span>
             )}
 
-            {/* Submit Button */}
             <button
               type="submit"
+              disabled={isSubmitting}
               style={{
-                padding: "0.85rem",
-                backgroundColor: "#2563eb",
+                marginTop: "1rem",
+                padding: "1rem",
+                backgroundColor: isSubmitting ? "#93c5fd" : "#2563eb",
                 color: "#fff",
                 border: "none",
-                borderRadius: "0.35rem",
-                cursor: "pointer",
-                fontSize: "1rem",
-                fontWeight: "bold",
-                marginTop: "0.5rem",
+                borderRadius: "0.5rem",
+                cursor: isSubmitting ? "not-allowed" : "pointer",
+                fontSize: "1.1rem",
+                fontWeight: "600",
+                transition: "background-color 0.3s ease",
               }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#1d4ed8")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor = isSubmitting
+                  ? "#93c5fd"
+                  : "#2563eb")
+              }
             >
-              Send Message
+              {isSubmitting ? "Submitting..." : "Send Message"}
             </button>
           </form>
         </section>

@@ -44,13 +44,22 @@ export default function Benefits() {
 
   return (
     <>
-      <div style={{ fontFamily: "Arial, sans-serif", color: "#333", width: "100vw", margin: 0, padding: 0 }}>
+      <div
+        style={{
+          fontFamily: "Arial, sans-serif",
+          color: "#333",
+          width: "100vw",
+          margin: 0,
+          padding: 0,
+          overflowX: "hidden",
+        }}
+      >
         {/* Hero Section */}
         <section
           style={{
             width: "100vw",
-            padding: "4rem 2rem",
-            backgroundColor: "#e6f0fa",
+            padding: "5rem 2rem",
+            background: "linear-gradient(to right, #e6f2ff, #f9fbff)", // light contact-blue gradient
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -58,10 +67,24 @@ export default function Benefits() {
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "1rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff", // normal contact blue
+              marginBottom: "1rem",
+            }}
+          >
             Empowering Education with TalkLMS
           </h2>
-          <p style={{ fontSize: "1.25rem", textAlign: "center", lineHeight: "1.8", maxWidth: "1200px" }}>
+          <p
+            style={{
+              fontSize: "1.25rem",
+              lineHeight: "1.8",
+              color: "#555",
+              maxWidth: "1200px",
+            }}
+          >
             Discover how TalkLMS transforms learning experiences for universities, colleges, and institutions.
           </p>
         </section>
@@ -70,12 +93,19 @@ export default function Benefits() {
         <section
           style={{
             width: "100vw",
-            padding: "4rem 2rem",
+            padding: "5rem 2rem",
             backgroundColor: "#fff",
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "3rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff",
+              marginBottom: "3rem",
+            }}
+          >
             Use Cases
           </h2>
 
@@ -93,7 +123,7 @@ export default function Benefits() {
                 key={index}
                 onClick={() => handleNavigate(item)}
                 style={{
-                  backgroundColor: "#f9fafb",
+                  background: "linear-gradient(to bottom right, #f0f8ff, #fefefe)", // soft white-blue
                   padding: "2.5rem 2rem",
                   borderRadius: "1rem",
                   textAlign: "center",
@@ -102,29 +132,48 @@ export default function Benefits() {
                   flexDirection: "column",
                   alignItems: "center",
                   justifyContent: "center",
-                  boxShadow: "0 10px 20px rgba(0,0,0,0.12)",
+                  boxShadow: "0 10px 25px rgba(0,0,0,0.1)",
                   transition: "all 0.3s ease",
                   minHeight: "280px",
+                  border: "1px solid #d6e4ff",
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-10px)";
-                  e.currentTarget.style.boxShadow = "0 15px 25px rgba(0,0,0,0.18)";
+                  e.currentTarget.style.boxShadow = "0 15px 30px rgba(0,0,0,0.18)";
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 10px 20px rgba(0,0,0,0.12)";
+                  e.currentTarget.style.boxShadow = "0 10px 25px rgba(0,0,0,0.1)";
                 }}
               >
-                <span style={{ fontSize: "3rem", marginBottom: "1rem" }}>{item.icon}</span>
-                <h3 style={{ fontSize: "1.6rem", fontWeight: "bold", marginBottom: "0.75rem", color: "#1e40af" }}>
+                <span style={{ fontSize: "3rem", marginBottom: "1rem" }}>
+                  {item.icon}
+                </span>
+                <h3
+                  style={{
+                    fontSize: "1.6rem",
+                    fontWeight: "bold",
+                    marginBottom: "0.75rem",
+                    color: "#007bff",
+                  }}
+                >
                   {item.title}
                 </h3>
-                <p style={{ fontSize: "1.15rem", color: "#374151", lineHeight: "1.6" }}>{item.desc}</p>
+                <p
+                  style={{
+                    fontSize: "1.1rem",
+                    color: "#555",
+                    lineHeight: "1.6",
+                  }}
+                >
+                  {item.desc}
+                </p>
               </div>
             ))}
           </div>
         </section>
       </div>
+
       <Footer />
     </>
   );

@@ -25,13 +25,22 @@ export default function Institutions() {
   return (
     <>
       <Navbar />
-      <div style={{ fontFamily: "Arial, sans-serif", color: "#333", width: "100vw", margin: 0, padding: 0 }}>
+      <div
+        style={{
+          fontFamily: "Arial, sans-serif",
+          color: "#333",
+          width: "100vw",
+          margin: 0,
+          padding: 0,
+        }}
+      >
         {/* Hero Section */}
         <section
           style={{
             width: "100vw",
             padding: "4rem 2rem",
-            backgroundImage: "url('https://via.placeholder.com/1200x400?text=Institution+Campus')",
+            backgroundImage:
+              "url('https://via.placeholder.com/1200x400?text=Institution+Campus')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: "flex",
@@ -43,22 +52,42 @@ export default function Institutions() {
             minHeight: "400px",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", marginBottom: "1rem", color: "#1e40af" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              marginBottom: "1rem",
+              color: "#007bff",
+            }}
+          >
             TalkLMS for Institutions
           </h2>
-          <p style={{ fontSize: "1.25rem", maxWidth: "800px", lineHeight: "1.8", marginBottom: "1.5rem", color: "#666" }}>
-            Empower institutional training with TalkLMS, a robust platform designed to facilitate professional development, create customized training programs, and effectively track learner progress.
+          <p
+            style={{
+              fontSize: "1.25rem",
+              maxWidth: "800px",
+              lineHeight: "1.8",
+              marginBottom: "1.5rem",
+              color: "#555",
+            }}
+          >
+            Empower institutional training with TalkLMS, a robust platform designed
+            to facilitate professional development, create customized training
+            programs, and effectively track learner progress.
           </p>
           <button
             style={{
               padding: "0.75rem 2rem",
-              backgroundColor: "#1e40af",
+              backgroundColor: "#007bff",
               color: "#fff",
               border: "none",
               borderRadius: "0.5rem",
               cursor: "pointer",
               fontSize: "1.1rem",
+              transition: "background-color 0.3s ease",
             }}
+            onMouseOver={(e) => (e.target.style.backgroundColor = "#0056b3")}
+            onMouseOut={(e) => (e.target.style.backgroundColor = "#007bff")}
           >
             Learn More
           </button>
@@ -76,7 +105,14 @@ export default function Institutions() {
             boxSizing: "border-box",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "1.5rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff",
+              marginBottom: "1.5rem",
+            }}
+          >
             Key Benefits for Institutions
           </h2>
           <div
@@ -102,11 +138,25 @@ export default function Institutions() {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  transition: "transform 0.3s ease",
                 }}
+                onMouseEnter={(e) => (e.currentTarget.style.transform = "translateY(-5px)")}
+                onMouseLeave={(e) => (e.currentTarget.style.transform = "translateY(0)")}
               >
-                <span style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>{item.icon}</span>
-                <h3 style={{ fontSize: "1.3rem", fontWeight: "bold", marginBottom: "0.5rem" }}>{item.title}</h3>
-                <p style={{ fontSize: "1rem", margin: 0, color: "#666" }}>{item.desc}</p>
+                <span style={{ fontSize: "2.5rem", marginBottom: "0.5rem" }}>
+                  {item.icon}
+                </span>
+                <h3
+                  style={{
+                    fontSize: "1.3rem",
+                    fontWeight: "bold",
+                    marginBottom: "0.5rem",
+                    color: "#007bff",
+                  }}
+                >
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: "1rem", margin: 0, color: "#555" }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -117,7 +167,7 @@ export default function Institutions() {
           style={{
             width: "100vw",
             padding: "3rem 2rem",
-            backgroundColor: "#e6f0fa",
+            backgroundColor: "#e6f2ff",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -126,11 +176,27 @@ export default function Institutions() {
             textAlign: "center",
           }}
         >
-          <h2 style={{ fontSize: "3rem", fontWeight: "bold", color: "#1e40af", marginBottom: "1rem" }}>
+          <h2
+            style={{
+              fontSize: "3rem",
+              fontWeight: "bold",
+              color: "#007bff",
+              marginBottom: "1rem",
+            }}
+          >
             Get Started with TalkLMS
           </h2>
-          <p style={{ fontSize: "1.25rem", maxWidth: "800px", lineHeight: "1.8", marginBottom: "1.5rem", color: "#666" }}>
-            Institutions can implement TalkLMS to improve professional training, streamline employee development, and track progress effectively.
+          <p
+            style={{
+              fontSize: "1.25rem",
+              maxWidth: "800px",
+              lineHeight: "1.8",
+              marginBottom: "1.5rem",
+              color: "#555",
+            }}
+          >
+            Institutions can implement TalkLMS to improve professional training,
+            streamline employee development, and track progress effectively.
           </p>
         </section>
       </div>
