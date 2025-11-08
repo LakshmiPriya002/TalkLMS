@@ -7,25 +7,25 @@ export default function KeyBenefits() {
       title: "Collaboration",
       desc: "Encourage teamwork with group discussions and projects.",
       gradient: "linear-gradient(135deg, #93C5FD 0%, #3B82F6 100%)",
-      icon: <FaUsers size={50} color="#2563eb" />, // changed icon color to blue accent
+      icon: <FaUsers size={50} color="#fff" />,
     },
     {
       title: "Performance Tracking",
       desc: "Monitor progress with real-time reports and insights.",
       gradient: "linear-gradient(135deg, #BBF7D0 0%, #22C55E 100%)",
-      icon: <FaChartLine size={50} color="#16a34a" />, // dark green icon for contrast
+      icon: <FaChartLine size={50} color="#fff" />,
     },
     {
       title: "24/7 Support",
       desc: "Round-the-clock support for educators and learners.",
       gradient: "linear-gradient(135deg, #FEF9C3 0%, #FACC15 100%)",
-      icon: <FaHeadset size={50} color="#ca8a04" />, // golden icon for warmth
+      icon: <FaHeadset size={50} color="#fff" />,
     },
     {
       title: "User Satisfaction",
       desc: "Designed to provide a seamless learning experience.",
       gradient: "linear-gradient(135deg, #FBCFE8 0%, #BE185D 100%)",
-      icon: <FaRegSmile size={50} color="#9d174d" />, // rich pink icon
+      icon: <FaRegSmile size={50} color="#fff" />,
     },
   ];
 
@@ -42,17 +42,19 @@ export default function KeyBenefits() {
             textAlign: "center",
           }}
         >
+          {/* Heading */}
           <h3
             style={{
               fontSize: "3rem",
               fontWeight: "bold",
               marginBottom: "1rem",
-              color: "#1e40af",
+              color: "#2563eb",
             }}
           >
             Key Benefits of TalkLMS
           </h3>
 
+          {/* Paragraph */}
           <p
             style={{
               fontSize: "1.5rem",
@@ -66,10 +68,61 @@ export default function KeyBenefits() {
             learners to achieve success.
           </p>
 
+          {/* Buttons */}
+          {/* <div style={{ marginBottom: "3rem" }}>
+            <button
+              style={{
+                backgroundColor: "#3B82F6",
+                color: "#fff",
+                padding: "0.8rem 1.8rem",
+                borderRadius: "0.75rem",
+                border: "none",
+                marginRight: "1rem",
+                fontSize: "1rem",
+                fontWeight: "500",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#2563EB";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "#3B82F6";
+              }}
+            >
+              Get Started
+            </button>
+
+            <button
+              style={{
+                backgroundColor: "transparent",
+                color: "#1E3A8A",
+                padding: "0.8rem 1.8rem",
+                borderRadius: "0.75rem",
+                border: "2px solid #1E3A8A",
+                fontSize: "1rem",
+                fontWeight: "500",
+                cursor: "pointer",
+                transition: "all 0.3s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.target.style.backgroundColor = "#1E3A8A";
+                e.target.style.color = "#fff";
+              }}
+              onMouseLeave={(e) => {
+                e.target.style.backgroundColor = "transparent";
+                e.target.style.color = "#1E3A8A";
+              }}
+            >
+              Learn More
+            </button>
+          </div> */}
+
+          {/* Cards Grid */}
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
               gap: "2.5rem",
             }}
           >
@@ -77,53 +130,39 @@ export default function KeyBenefits() {
               <div
                 key={i}
                 style={{
-                  background: "#fff", // white background to replace color gradient
+                  background: b.gradient,
                   borderRadius: "1rem",
-                  padding: "3rem 2rem",
-                  color: "#1e293b",
+                  padding: "2.5rem 2rem",
+                  color: "#fff",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
                   textAlign: "center",
-                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)", // subtle shadow for material effect
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.15)",
                   transition: "transform 0.3s ease, box-shadow 0.3s ease",
-                  cursor: "default",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-8px)";
+                  e.currentTarget.style.transform = "translateY(-10px)";
                   e.currentTarget.style.boxShadow =
-                    "0 12px 40px rgba(0, 0, 0, 0.10)";
+                    "0 15px 25px rgba(0,0,0,0.25)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "none";
+                  e.currentTarget.style.transform = "translateY(0)";
                   e.currentTarget.style.boxShadow =
-                    "0 4px 20px rgba(0, 0, 0, 0.05)";
+                    "0 10px 20px rgba(0,0,0,0.15)";
                 }}
               >
-                <div
-                  style={{
-                    marginBottom: "1.5rem",
-                    width: "80px",
-                    height: "80px",
-                    borderRadius: "50%",
-                    background: b.gradient, // keep gradient behind the icon circle
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {b.icon}
-                </div>
+                <div style={{ marginBottom: "1.5rem" }}>{b.icon}</div>
                 <h4
                   style={{
                     fontSize: "1.5rem",
                     fontWeight: "600",
-                    marginBottom: "1rem",
+                    marginBottom: "0.75rem",
                   }}
                 >
                   {b.title}
                 </h4>
-                <p style={{ fontSize: "1.15rem", lineHeight: "1.6", color: "#4B5563" }}>
+                <p style={{ fontSize: "1.15rem", lineHeight: "1.6" }}>
                   {b.desc}
                 </p>
               </div>
@@ -132,6 +171,21 @@ export default function KeyBenefits() {
         </div>
       </section>
 
+      {/* Footer Section */}
+      {/* <footer
+        style={{
+          backgroundColor: "#1E3A8A",
+          color: "#fff",
+          padding: "2rem 1.5rem",
+          textAlign: "center",
+          fontSize: "1rem",
+          marginTop: "2rem",
+        }}
+      >
+        © {new Date().getFullYear()} TalkLMS. All Rights Reserved.
+      </footer> */}
+
+      {/* Responsive CSS */}
       <style>
         {`
           @media (max-width: 1024px) {
@@ -156,9 +210,6 @@ export default function KeyBenefits() {
             }
             p {
               font-size: 1rem !important;
-            }
-            div[style*="grid-template-columns"] {
-              grid-template-columns: 1fr !important;
             }
           }
         `}

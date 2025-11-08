@@ -25,7 +25,7 @@ export default function WhyChooseUs() {
       
       {/* Section Heading */}
       <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center", marginBottom: "3rem" }}>
-        <h3 style={{ fontSize: "2.8rem", fontWeight: "bold", marginBottom: "1rem" , color: "#1e40af" }}>
+        <h3 style={{ fontSize: "2.8rem", fontWeight: "bold", marginBottom: "1rem" , color: "#2563eb" }}>
           Why Choose TalkLMS?
         </h3>
         <p style={{ fontSize: "1.4rem", color: "#4B5563", lineHeight: "1.8" }}>

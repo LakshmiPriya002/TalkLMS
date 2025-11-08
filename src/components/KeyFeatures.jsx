@@ -42,7 +42,7 @@ export default function KeyFeatures() {
             fontWeight: "bold",
             marginBottom: "1rem",
             textAlign: "center",
-            color: "#1e40af",
+            color: "#2563eb",
           }}
         >
           Key Features of TalkLMS

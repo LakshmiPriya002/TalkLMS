@@ -26,7 +26,7 @@ export default function AdditionalBenefits() {
   return (
     <section style={{ padding: "4rem 2rem", backgroundColor: "#f3f4f6" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", textAlign: "center" }}>
-        <h3 style={{ fontSize: "2.8rem", fontWeight: "bold", marginBottom: "1rem", color: "#1e40af" }}>
+        <h3 style={{ fontSize: "2.8rem", fontWeight: "bold", marginBottom: "1rem", color: "#2563eb" }}>
           Additional Benefits
         </h3>
         <p style={{ fontSize: "1.25rem", color: "#4B5563", marginBottom: "3rem" }}>
